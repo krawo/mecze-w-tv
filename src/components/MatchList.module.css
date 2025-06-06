@@ -259,4 +259,9 @@ body, .container {
     right: 8px;
     margin-top: 0;
   }
+
+  .calendarButton {
+    font-size: 0.7rem;
+    padding: 2px 8px;
+  }
 }
