@@ -37,8 +37,13 @@ const MatchList = () => {
           });
         });
 
-        setLeagueOptions([...leagues].sort().map(value => ({ value, label: value })));
-        setChannelOptions([...channels].sort().map(value => ({ value, label: value })));
+        const leaguesArray = [...leagues].sort();
+        const channelsArray = [...channels].sort();
+
+        setLeagueOptions(leaguesArray);
+        setChannelOptions(channelsArray);
+        setSelectedLeagueOptions(leaguesArray);
+        setSelectedChannelOptions(channelsArray);
 
       } catch (err) {
         console.error('Fetch error:', err);
@@ -52,8 +57,8 @@ const MatchList = () => {
   }, []);
 
   const filteredDays = useMemo(() => {
-    const selectedLeagues = selectedLeagueOptions.map(opt => opt.value);
-    const selectedChannels = selectedChannelOptions.map(opt => opt.value);
+    const selectedLeagues = selectedLeagueOptions;
+    const selectedChannels = selectedChannelOptions;
 
     return days.map(day => {
       const filteredMatches = day.matches.filter(match => {
@@ -79,8 +84,6 @@ const MatchList = () => {
         setSelectedLeagueOptions={setSelectedLeagueOptions}
         selectedChannelOptions={selectedChannelOptions}
         setSelectedChannelOptions={setSelectedChannelOptions}
-        showReplays={showReplays}
-        setShowReplays={setShowReplays}
       />
 
       {filteredDays.length === 0 ? (
