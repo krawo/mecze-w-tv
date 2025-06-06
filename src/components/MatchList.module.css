@@ -78,6 +78,7 @@ body, .container {
   border: 1px solid var(--border-color);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
   transition: transform 0.15s ease;
+  position: relative;
 }
 
 .matchItem:hover {
@@ -231,6 +232,7 @@ body, .container {
 }
 
 .matchActions {
+  display: none;
   margin-top: 6px;
 }
 
@@ -247,4 +249,14 @@ body, .container {
 
 .calendarButton:hover {
   background: rgba(255, 255, 255, 0.2);
+}
+
+@media (max-width: 500px) {
+  .matchActions {
+    display: block;
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    margin-top: 0;
+  }
 }
