@@ -1,24 +1,26 @@
-import logo from './logo.svg';
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import './App.css';
+import MatchList from './components/MatchList';
+import ThemeToggle from './components/ThemeToggle';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router basename="/mecze">
+      <div className="App">
+        <div className="header">
+          <h1>Mecze w TV</h1>
+          <div className="theme-toggle-container">
+            <ThemeToggle />
+          </div>
+        </div>
+        <main className="main-content">
+          <Routes>
+            <Route path="/" element={<MatchList />} />
+          </Routes>
+        </main>
+      </div>
+    </Router>
   );
 }
 

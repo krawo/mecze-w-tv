@@ -1,38 +1,67 @@
+:root {
+  --background-color: #f9fafb;
+  --text-color: #1f2937;
+  --primary-color: #2563eb;
+  --primary-bg: #eff6ff;
+  --secondary-color: #6b7280;
+  --border-color: #e5e7eb;
+}
+
+[data-theme='dark'] {
+  --background-color: #0f172a;
+  --text-color: #f3f4f6;
+  --primary-color: #93c5fd;
+  --primary-bg: #1e293b;
+  --secondary-color: #9ca3af;
+  --border-color: #334155;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  font-family: 'Inter', sans-serif;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
 .App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
+  min-height: 100vh;
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  padding: 16px 20px;
+  background-color: var(--primary-bg);
+  border-bottom: 1px solid var(--border-color);
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-.App-link {
-  color: #61dafb;
+.main-content {
+  flex: 1;
+  padding: 20px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.theme-toggle-container {
+  display: flex;
+  align-items: center;
+}
+
+button.theme-toggle-btn {
+  background: none;
+  border: none;
+  font-size: 1.4em;
+  cursor: pointer;
+  color: var(--text-color);
+  transition: color 0.2s;
+}
+
+button.theme-toggle-btn:hover {
+  color: var(--primary-color);
 }
