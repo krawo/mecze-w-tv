@@ -219,6 +219,29 @@ body, .container {
   color: var(--text-color);
 }
 
+.toggleGroup {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 8px;
+}
+
+.toggleButton {
+  background-color: var(--primary-bg);
+  color: var(--primary-color);
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  padding: 4px 8px;
+  cursor: pointer;
+  font-size: 0.85em;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.toggleButton.active {
+  background-color: var(--primary-color);
+  color: #fff;
+}
+
 .replayFilterCompact {
   display: flex;
   align-items: center;

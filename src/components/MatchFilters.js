@@ -1,6 +1,5 @@
 // MatchFilters.js
 import React from 'react';
-import Select from 'react-select';
 import styles from './MatchList.module.css';
 
 const MatchFilters = ({
@@ -10,46 +9,44 @@ const MatchFilters = ({
   setSelectedLeagueOptions,
   selectedChannelOptions,
   setSelectedChannelOptions,
-  showReplays,
-  setShowReplays
 }) => {
-  const customSelectStyles = {
-    container: (provided) => ({ ...provided, width: '100%' }),
-    control: (provided) => ({ ...provided, minHeight: '38px', borderColor: '#ced4da' }),
-    menu: (provided) => ({ ...provided, zIndex: 5 }),
-    valueContainer: (provided) => ({ ...provided, padding: '2px 8px' }),
-    multiValue: (provided) => ({ ...provided, backgroundColor: '#eaf5fc' }),
-    multiValueLabel: (provided) => ({ ...provided, color: '#3498db' }),
-    option: (provided, state) => ({
-      ...provided,
-      color: state.isSelected ? '#FFF' : '#333',
-      backgroundColor: state.isSelected ? provided.backgroundColor : state.isFocused ? '#f0f0f0' : provided.backgroundColor,
-    }),
+  const toggleOption = (option, selected, setter) => {
+    if (selected.includes(option)) {
+      setter(selected.filter(o => o !== option));
+    } else {
+      setter([...selected, option]);
+    }
   };
 
   return (
     <div className={styles.filtersWrapperCompact}>
       <div className={styles.filterSelectContainer}>
         <label className={styles.filterSelectLabel}>Ligi:</label>
-        <Select
-          options={leagueOptions}
-          isMulti
-          value={selectedLeagueOptions}
-          onChange={setSelectedLeagueOptions}
-          placeholder="Wszystkie ligi"
-          styles={customSelectStyles}
-        />
+        <div className={styles.toggleGroup}>
+          {leagueOptions.map(option => (
+            <button
+              key={option}
+              className={`${styles.toggleButton} ${selectedLeagueOptions.includes(option) ? styles.active : ''}`}
+              onClick={() => toggleOption(option, selectedLeagueOptions, setSelectedLeagueOptions)}
+            >
+              {option}
+            </button>
+          ))}
+        </div>
       </div>
       <div className={styles.filterSelectContainer}>
         <label className={styles.filterSelectLabel}>Kanały:</label>
-        <Select
-          options={channelOptions}
-          isMulti
-          value={selectedChannelOptions}
-          onChange={setSelectedChannelOptions}
-          placeholder="Wszystkie kanały"
-          styles={customSelectStyles}
-        />
+        <div className={styles.toggleGroup}>
+          {channelOptions.map(option => (
+            <button
+              key={option}
+              className={`${styles.toggleButton} ${selectedChannelOptions.includes(option) ? styles.active : ''}`}
+              onClick={() => toggleOption(option, selectedChannelOptions, setSelectedChannelOptions)}
+            >
+              {option}
+            </button>
+          ))}
+        </div>
       </div>
     </div>
   );
